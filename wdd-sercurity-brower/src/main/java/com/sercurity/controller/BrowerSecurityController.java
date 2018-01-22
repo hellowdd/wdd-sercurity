@@ -3,6 +3,7 @@ package com.sercurity.controller;
 import com.sercurity.core.properties.SecurityProperties;
 import com.sercurity.support.ResponseVo;
 import com.sercurity.support.ResponseVoUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 @RestController
+@Slf4j
 public class BrowerSecurityController {
 
     private Logger logger= LoggerFactory.getLogger(this.getClass());
