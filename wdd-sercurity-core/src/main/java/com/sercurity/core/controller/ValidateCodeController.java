@@ -3,6 +3,7 @@ package com.sercurity.core.controller;
 import com.sercurity.core.bean.ImageCode;
 import com.sercurity.core.properties.SecurityProperties;
 import com.sercurity.core.util.ImageCodeUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
+@Slf4j
 public class ValidateCodeController {
 
     public static final String sessionKey="SESSION_KEY_IMAGE_CODE";
