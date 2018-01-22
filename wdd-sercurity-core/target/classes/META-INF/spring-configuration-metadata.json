@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.sercurity.core.properties.SecurityProperties",
+      "name": "wdd.security",
+      "type": "com.sercurity.core.properties.SecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.sercurity.core.properties.SecurityProperties",
+      "name": "wdd.security.brower",
+      "type": "com.sercurity.core.properties.BrowerProperties"
+    },
+    {
+      "sourceType": "com.sercurity.core.properties.SecurityProperties",
+      "name": "wdd.security.code",
+      "type": "com.sercurity.core.properties.ValidateCodeProperties"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/wdd-sercurity.iml" filepath="$PROJECT_DIR$/.idea/wdd-sercurity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wdd-sercurity-brower/wdd-sercurity-brower.iml" filepath="$PROJECT_DIR$/wdd-sercurity-brower/wdd-sercurity-brower.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wdd-sercurity-core/wdd-sercurity-core.iml" filepath="$PROJECT_DIR$/wdd-sercurity-core/wdd-sercurity-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wdd-sercurity-demo/wdd-sercurity-demo.iml" filepath="$PROJECT_DIR$/wdd-sercurity-demo/wdd-sercurity-demo.iml" />
+    </modules>
+  </component>
+</project>
