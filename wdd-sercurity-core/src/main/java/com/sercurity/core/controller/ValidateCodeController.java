@@ -34,11 +34,26 @@ public class ValidateCodeController {
 
     @Resource
     private ValidateCodeCreate imageCodeUtil;
+
+    @Resource
+    private ValidateCodeCreate smsCodeCreater;
     /**
-     *
+     * 图形验证码
      */
     @GetMapping("/code/image")
     public void createCode() throws IOException {
+        ImageCode imageCode = imageCodeUtil.createImageCode(request);
+        //将生成的code放到session中
+        sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,imageCode);
+        ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
+    }
+
+
+    /**
+     * 短信验证码
+     */
+    @GetMapping("/code/sms")
+    public void createSmsCode() throws IOException {
         ImageCode imageCode = imageCodeUtil.createImageCode(request);
         //将生成的code放到session中
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,imageCode);
