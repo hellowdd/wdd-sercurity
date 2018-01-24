@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -56,10 +58,12 @@ public class ValidateCodeController {
      * 短信验证码
      */
     @GetMapping("/code/sms")
-    public void createSmsCode() throws IOException {
+    public void createSmsCode() throws IOException, ServletRequestBindingException {
         SmsCode smsCode = smsCodeCreate.createImageCode(request);
         //将生成的code放到session中
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,smsCode);
+        String mobile= ServletRequestUtils.getRequiredStringParameter(request,"mobile");
+        smsCodeSender.send(mobile,smsCode.getCode());
 //        ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
     }
 

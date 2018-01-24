@@ -14,6 +14,7 @@ public class SmsCodeCreateImpl implements SmsCodeCreate {
 
     @Autowired
     private SecurityProperties securityProperties;
+
     @Override
     public SmsCode createImageCode(HttpServletRequest request) {
         String code = RandomStringUtils.randomNumeric(securityProperties.getCode().getSms().getLength());
