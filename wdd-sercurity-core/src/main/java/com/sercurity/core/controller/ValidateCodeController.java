@@ -1,8 +1,9 @@
 package com.sercurity.core.controller;
 
 import com.sercurity.core.bean.ImageCode;
-import com.sercurity.core.properties.SecurityProperties;
-import com.sercurity.core.util.ImageCodeUtil;
+import com.sercurity.core.bean.SmsCode;
+import com.sercurity.core.sms.SmsCodeCreate;
+import com.sercurity.core.sms.SmsCodeSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,11 +32,14 @@ public class ValidateCodeController {
     @Autowired
     private HttpServletResponse response;
 
-    @Resource
+    @Autowired
     private ValidateCodeCreate imageCodeUtil;
 
-    @Resource
-    private ValidateCodeCreate smsCodeCreater;
+    @Autowired
+    private SmsCodeCreate smsCodeCreate;
+
+    @Autowired
+    private SmsCodeSender smsCodeSender;
     /**
      * 图形验证码
      */
@@ -54,10 +57,10 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/sms")
     public void createSmsCode() throws IOException {
-        ImageCode imageCode = imageCodeUtil.createImageCode(request);
+        SmsCode smsCode = smsCodeCreate.createImageCode(request);
         //将生成的code放到session中
-        sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,imageCode);
-        ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
+        sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,smsCode);
+//        ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
     }
 
 

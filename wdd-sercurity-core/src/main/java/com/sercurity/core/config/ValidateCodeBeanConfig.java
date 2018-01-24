@@ -2,6 +2,8 @@ package com.sercurity.core.config;
 
 import com.sercurity.core.controller.ValidateCodeCreate;
 import com.sercurity.core.properties.SecurityProperties;
+import com.sercurity.core.sms.SmsCodeSender;
+import com.sercurity.core.sms.impl.DefaultSmsCodeSenderImpl;
 import com.sercurity.core.util.ImageCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -24,6 +26,14 @@ public class ValidateCodeBeanConfig {
         ImageCodeUtil imageCodeUtil=new ImageCodeUtil();
         imageCodeUtil.setSecurityProperties(securityProperties);
         return imageCodeUtil;
+    }
+
+    @Bean
+    //过滤条件如果存在name为smsCoeSender的实现类name下面注入bean的操作不执行
+    @ConditionalOnMissingBean(name="smsCoeSender")
+    public SmsCodeSender smsCodeSender(){
+        DefaultSmsCodeSenderImpl defaultSmsCodeSender=new DefaultSmsCodeSenderImpl();
+        return defaultSmsCodeSender;
     }
 
 }
