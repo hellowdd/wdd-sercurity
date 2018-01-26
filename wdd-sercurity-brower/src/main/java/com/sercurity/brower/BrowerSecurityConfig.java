@@ -91,6 +91,7 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 //都需要身份认证
                 .authenticated()
                 .and()
+                // 关闭csrf保护功能（跨域访问）
                 .csrf().disable();
     }
 }
