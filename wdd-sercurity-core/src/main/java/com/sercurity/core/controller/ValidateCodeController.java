@@ -6,6 +6,7 @@ import com.sercurity.core.bean.ValidateCode;
 import com.sercurity.core.sms.SmsCodeSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.ServletRequestBindingException;
@@ -35,9 +36,11 @@ public class ValidateCodeController {
     private HttpServletResponse response;
 
     @Autowired
+    @Qualifier("imageCodeUtil")
     private ValidateCodeCreate imageCodeUtil;
 
     @Autowired
+    @Qualifier("smsCodeCreateImpl")
     private ValidateCodeCreate smsCodeCreateImpl;
 
     @Autowired
