@@ -55,7 +55,7 @@ public class ValidateCodeController {
 
 
     /**
-     * 短信验证码
+     * 发送短信验证码
      */
     @GetMapping("/code/sms")
     public void createSmsCode() throws IOException, ServletRequestBindingException {
@@ -64,7 +64,6 @@ public class ValidateCodeController {
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,smsCode);
         String mobile= ServletRequestUtils.getRequiredStringParameter(request,"mobile");
         smsCodeSender.send(mobile,smsCode.getCode());
-//        ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
     }
 
 
