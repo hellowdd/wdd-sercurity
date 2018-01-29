@@ -2,6 +2,7 @@ package com.sercurity.core.controller;
 
 import com.sercurity.core.bean.ImageCode;
 import com.sercurity.core.bean.SmsCode;
+import com.sercurity.core.bean.ValidateCode;
 import com.sercurity.core.sms.SmsCodeSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class ValidateCodeController {
     private ValidateCodeCreate imageCodeUtil;
 
     @Autowired
-    private SmsCodeCreate smsCodeCreate;
+    private ValidateCodeCreate smsCodeCreateImpl;
 
     @Autowired
     private SmsCodeSender smsCodeSender;
@@ -46,7 +47,7 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/image")
     public void createCode() throws IOException {
-        ImageCode imageCode = imageCodeUtil.createImageCode(request);
+        ImageCode imageCode = (ImageCode)imageCodeUtil.createImageCode(request);
         //将生成的code放到session中
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,imageCode);
         ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
@@ -58,7 +59,7 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/sms")
     public void createSmsCode() throws IOException, ServletRequestBindingException {
-        SmsCode smsCode = smsCodeCreate.createImageCode(request);
+        ValidateCode smsCode = smsCodeCreateImpl.createImageCode(request);
         //将生成的code放到session中
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,smsCode);
         String mobile= ServletRequestUtils.getRequiredStringParameter(request,"mobile");
