@@ -1,8 +1,8 @@
 package com.sercurity.core.sms.impl;
 
 import com.sercurity.core.bean.SmsCode;
+import com.sercurity.core.controller.ValidateCodeCreate;
 import com.sercurity.core.properties.SecurityProperties;
-import com.sercurity.core.sms.SmsCodeCreate;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 @Component
-public class SmsCodeCreateImpl implements SmsCodeCreate {
+public class SmsCodeCreateImpl implements ValidateCodeCreate {
 
     @Autowired
     private SecurityProperties securityProperties;

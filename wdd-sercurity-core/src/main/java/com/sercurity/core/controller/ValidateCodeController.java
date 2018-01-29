@@ -2,7 +2,6 @@ package com.sercurity.core.controller;
 
 import com.sercurity.core.bean.ImageCode;
 import com.sercurity.core.bean.SmsCode;
-import com.sercurity.core.sms.SmsCodeCreate;
 import com.sercurity.core.sms.SmsCodeSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

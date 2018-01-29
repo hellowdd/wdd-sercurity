@@ -1,9 +1,9 @@
 package com.sercurity.core.controller;
 
-import com.sercurity.core.bean.ImageCode;
+import com.sercurity.core.bean.ValidateCode;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface ValidateCodeCreate {
-    ImageCode createImageCode(HttpServletRequest request);
+    ValidateCode createImageCode(HttpServletRequest request);
 }
