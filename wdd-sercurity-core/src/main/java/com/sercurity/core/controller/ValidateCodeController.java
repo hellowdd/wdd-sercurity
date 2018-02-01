@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,11 +37,9 @@ public class ValidateCodeController {
     private HttpServletResponse response;
 
     @Autowired
-    @Qualifier("imageCodeUtil")
-    private ValidateCodeCreate imageCodeUtil;
+    private ValidateCodeCreate imageCodeCreate;
 
     @Autowired
-    @Qualifier("smsCodeCreateImpl")
     private ValidateCodeCreate smsCodeCreateImpl;
 
     @Autowired
@@ -50,7 +49,7 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/image")
     public void createCode() throws IOException {
-        ImageCode imageCode = (ImageCode)imageCodeUtil.createImageCode(request);
+        ImageCode imageCode = (ImageCode)imageCodeCreate.createImageCode(request);
         //将生成的code放到session中
         sessionStrategy.setAttribute(new ServletWebRequest(request),sessionKey,imageCode);
         ImageIO.write(imageCode.getImage(),"JPEG",response.getOutputStream());
